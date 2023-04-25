@@ -1,5 +1,5 @@
 $path_to_file = "data/info.txt"
-$source = 'https://www.dearvoodoo.fr/stream/TP/Twitch/categories.txt'
+$source = 'https://raw.githubusercontent.com/dearvoodoo/TP-stream_info/main/data/categories.txt'
 $path_to_categories = "data/categories.txt"
 $webClient = New-Object System.Net.WebClient
 $webClient.DownloadFile($source, $path_to_categories)
