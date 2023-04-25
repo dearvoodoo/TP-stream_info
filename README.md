@@ -1,5 +1,8 @@
 # TP-stream_info
+TP Stream Info is a popup window for [Touch Portal](https://www.touch-portal.com/).  
+Press a button on your TP mobile app to open a window in the foreground on your PC's active screen where you can edit your stream information.
 
+# How to install
 1. Extract zip file where you wish
 2. Set up two Custom Values inside TouchPortal to have values saved to. "StreamTitle" | "StreamCategory"
 3. Import Button included and set location of extracted powershell script & info.txt file 
