@@ -1,20 +1,30 @@
 $path_to_file = "data/info.txt"
+
+# Get the  list of categories via github raw. So when I update it you don't have to update on your side :)
 $source = 'https://raw.githubusercontent.com/dearvoodoo/TP-stream_info/main/data/categories.txt'
 $path_to_categories = "data/categories.txt"
 $webClient = New-Object System.Net.WebClient
 $webClient.DownloadFile($source, $path_to_categories)
 
+$path_to_options = "data/options.txt"
 
 if (-not(Test-Path $path_to_categories)) {
     "Apex Legends", "Elden Ring", "Fortnite", "Grand Theft Auto V", "Just Chatting", "League Of Legends", "Minecraft", "Overwatch 2", "Sons of the Forest", "Valorant", "Wobbly Life" | Set-Content $path_to_categories -Encoding utf8
 }
+
+# Default options
+if (-not(Test-Path $path_to_options)) {
+    "Cancel", "Done", "Stream Informations", "Please select a stream category:", "Please enter a new stream title:" | Set-Content $path_to_categories -Encoding utf8
+}
+
+$options = Get-Content $path_to_options
 
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
 $form = New-Object System.Windows.Forms.Form
 $form.Icon = New-Object System.Drawing.Icon "data/twitch.ico"
-$form.Text = 'Stream Informations'
+$form.Text = $options[2]
 $form.Size = New-Object System.Drawing.Size(440,310)
 $form.BackColor = [System.Drawing.Color]::FromArgb(16, 16, 16)
 $form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
@@ -28,7 +38,7 @@ $okButton.Size = New-Object System.Drawing.Size(75,23)
 $okButton.BackColor = [System.Drawing.Color]::FromArgb(101, 98, 251)
 $okButton.ForeColor = [System.Drawing.Color]::White
 $okButton.Font = [System.Drawing.Font]::new("Arial", 8, [System.Drawing.FontStyle]::Bold)
-$okButton.Text = 'Done'
+$okButton.Text = $options[1]
 $okButton.FlatStyle = 'Flat'
 $okButton.FlatAppearance.BorderSize = 0
 $okButton.FlatAppearance.BorderColor = [System.Drawing.Color]::FromArgb(101, 98, 251)
@@ -44,7 +54,7 @@ $cancelButton.Size = New-Object System.Drawing.Size(75,23)
 $cancelButton.BackColor = [System.Drawing.Color]::FromArgb(41, 45, 51)
 $cancelButton.ForeColor = [System.Drawing.Color]::White
 $cancelButton.Font = [System.Drawing.Font]::new("Arial", 8, [System.Drawing.FontStyle]::Bold)
-$cancelButton.Text = 'Cancel'
+$cancelButton.Text = $options[0]
 $cancelButton.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
 $cancelButton.FlatStyle = 'Flat'
 $cancelButton.FlatAppearance.BorderSize = 0
@@ -57,7 +67,7 @@ $form.Controls.Add($cancelButton)
 $label = New-Object System.Windows.Forms.Label
 $label.Location = New-Object System.Drawing.Point(40,20)
 $label.Size = New-Object System.Drawing.Size(280,20)
-$label.Text = 'Please enter a new stream title:'
+$label.Text = $options[4]
 $label.Font = [System.Drawing.Font]::new("Arial", 12, [System.Drawing.FontStyle]::Bold)
 $label.ForeColor = [System.Drawing.Color]::White
 $form.Controls.Add($label)
@@ -84,7 +94,7 @@ $form.Controls.Add($textArea)
 $label = New-Object System.Windows.Forms.Label
 $label.Location = New-Object System.Drawing.Point(40,135)
 $label.Size = New-Object System.Drawing.Size(280,20)
-$label.Text = 'Please select a stream category:'
+$label.Text = $options[3]
 $label.Font = [System.Drawing.Font]::new("Arial", 12, [System.Drawing.FontStyle]::Bold)
 $label.ForeColor = [System.Drawing.Color]::White
 $form.Controls.Add($label)
