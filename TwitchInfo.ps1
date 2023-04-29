@@ -16,7 +16,7 @@ if (-not(Test-Path $path_to_categories)) {
 
 # Default options
 if (-not(Test-Path $path_to_options)) {
-    "Cancel", "Done", "Stream Informations", "Please select a stream category:", "Please enter a new stream title:" | Set-Content $path_to_categories -Encoding utf8
+    "Cancel", "Done", "Stream Informations", "Please select a stream category:", "Please enter a new stream title:", "Segoe UI" | Set-Content $path_to_categories -Encoding utf8
 }
 
 $options = Get-Content $path_to_options
