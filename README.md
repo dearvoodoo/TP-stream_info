@@ -7,6 +7,13 @@ Press a button on your TP mobile app to open a window in the foreground on your 
 2. Set up two Custom Values inside TouchPortal to have values saved to. "StreamTitle" | "StreamCategory"
 3. Import Button included and set location of extracted powershell script & info.txt file 
 4. (Optional) change or translate text in options.txt to your preferences
+  * The file use the folowing information:
+    * Cancel button text
+    * Valid button text
+    * Window name
+    * Stream category label text
+    * Stream title label text
+    * Font Family name (have to be compatible with bold text)
 
 ## Credits
 Original Input Box Pop-Up - Update a Value Inside of TouchPortal by [Gitago](https://discord.com/channels/548426182698467339/608932614656491542/992289749266088016)  
